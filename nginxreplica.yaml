@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: app-replicaset
+  labels:
+    app: app-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-replicaset
+  template:
+    metadata:
+      labels:
+        app: app-replicaset
+    spec:
+      containers:
+      - name: app-replicaset
+        image: nginx
+        ports:
+        - name: web
+          containerPort:  80
+          protocol: TCP
+        env:
+        - name: NGX_VERSION
+          value: 1.16.1
+        
+      
